@@ -1,26 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
+import { Players } from './../imports/api/players';
+import { Tracker } from 'meteor/tracker';
 
-const players = [
-  {
-    _id: '1',
-    name: 'Aseel',
-    score: 99
-  },
-  {
-    _id: '2',
-    name: 'Mo',
-    score: 22
-  },
-  {
-    _id: '3',
-    name: 'Hadeel',
-    score: 44
-  }
-];
+// Tracker.autorun: Takes a set of functions, monitors the queries run inside the functions.
+// When query changes, it reruns the function.
 
-renderPlayers = () => {
+// Wait for the DOM to load
+Meteor.startup(() => {
+  Tracker.autorun(function() {
+    let players = Players.find().fetch();
+    let title = 'Score Keep';
+    let name = 'Aseel';
+    let jsx = (
+      <div>
+        <h1> {title} </h1>
+        <p>Hello {name}!</p>
+        {renderPlayers(players)}
+      </div>
+    );
+    ReactDOM.render(jsx, document.getElementById('app'));
+  });
+});
+
+renderPlayers = players => {
+  console.log('PLAYA: ', players);
   return players.map(player => {
     return (
       <p key={player._id}>
@@ -29,17 +34,3 @@ renderPlayers = () => {
     );
   });
 };
-
-// Wait for the DOM to load
-Meteor.startup(() => {
-  let title = 'Score Keep';
-  let name = 'Aseel';
-  let jsx = (
-    <div>
-      <h1> {title} </h1>
-      <p>Hello {name}!</p>
-      {renderPlayers()}
-    </div>
-  );
-  ReactDOM.render(jsx, document.getElementById('app'));
-});
