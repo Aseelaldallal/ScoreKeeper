@@ -1,5 +1,4 @@
+import { Players } from './../imports/api/players';
 import { Meteor } from 'meteor/meteor';
 
-Meteor.startup(() => {
-  // code to run on server at startup
-});
+Meteor.startup(function() {});
