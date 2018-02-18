@@ -32,10 +32,21 @@ renderPlayers = players => {
   return players.map(player => {
     return (
       <p key={player._id}>
-        {player.name} has {player.score} points
+        {player.name} has {player.score} points.
+        <button onClick={() => updateScore(player._id, 1)}>+1 </button>
+        <button onClick={() => updateScore(player._id, -1)}>-1</button>
+        <button onClick={() => removePlayer(player._id)}>X</button>
       </p>
     );
   });
+};
+
+removePlayer = playerID => {
+  Players.remove({ _id: playerID });
+};
+
+updateScore = (playerID, value) => {
+  Players.update({ _id: playerID }, { $inc: { score: value } });
 };
 
 handleSubmit = e => {
