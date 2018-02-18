@@ -4,23 +4,23 @@ import { Meteor } from 'meteor/meteor';
 import { Players } from './../imports/api/players';
 import { Tracker } from 'meteor/tracker';
 
+import TitleBar from '../imports/UI/TitleBar/TitleBar';
+import AddPlayer from '../imports/UI/AddPlayer/AddPlayer';
+
 // Tracker.autorun: Takes a set of functions, monitors the queries run inside the functions.
 // When query changes, it reruns the function.
 
-// Wait for the DOM to load
+// Startup: Wait for the DOM to load
 Meteor.startup(() => {
   Tracker.autorun(function() {
     let players = Players.find().fetch();
-    let title = 'Score Keep';
-    let name = 'Aseel';
     let jsx = (
       <div>
-        <h1> {title} </h1>
-        <p>Hello {name}!</p>
+        <TitleBar title="Score Keep" subtitle="Subtitle" />
         {renderPlayers(players)}
         <form onSubmit={handleSubmit}>
           <input type="text" name="playerName" placeholder="Player name" />
-          <button>Add Player</button>
+          <AddPlayer />
         </form>
       </div>
     );
@@ -46,7 +46,7 @@ removePlayer = playerID => {
 };
 
 updateScore = (playerID, value) => {
-  Players.update({ _id: playerID }, { $inc: { score: value } });
+  Players.update(playerID, { $inc: { score: value } });
 };
 
 handleSubmit = e => {
