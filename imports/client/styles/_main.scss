@@ -1,0 +1,23 @@
+/* CSS declarations go here */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; // 62.5% of default font value. Default font value for most browsers is 16px
+}
+
+body {
+  color: #555555;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 2.8rem;
+}
+
+@import './components/titleBar';
+@import './components/wrapper';
