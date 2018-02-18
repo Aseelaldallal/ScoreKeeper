@@ -4,10 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Players } from './../imports/api/players';
 import { Tracker } from 'meteor/tracker';
 
-import TitleBar from '../imports/UI/TitleBar/TitleBar';
-import AddPlayer from '../imports/UI/AddPlayer/AddPlayer';
-import Player from '../imports/UI/Player/Player';
-import PlayerList from '../imports/UI/PlayerList/PlayerList';
+import App from '../imports/UI/App';
 
 // Tracker.autorun: Takes a set of functions, monitors the queries run inside the functions.
 // When query changes, it reruns the function.
@@ -16,13 +13,7 @@ import PlayerList from '../imports/UI/PlayerList/PlayerList';
 Meteor.startup(() => {
   Tracker.autorun(function() {
     let players = Players.find().fetch();
-    let jsx = (
-      <div>
-        <TitleBar title="Score Keep" subtitle="Subtitle" />
-        <PlayerList players={players} />
-        <AddPlayer score={0} />
-      </div>
-    );
+    let jsx = <App title="Score Keep" players={players} />;
     ReactDOM.render(jsx, document.getElementById('app'));
   });
 });

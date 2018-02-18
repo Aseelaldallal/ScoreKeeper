@@ -6,7 +6,7 @@ class TitleBar extends Component {
     return (
       <div>
         <h1> {this.props.title}</h1>
-        <p> {this.props.subtitle}</p>
+        {this.props.subtitle ? <h2> {this.props.subtitle}</h2> : null}
       </div>
     );
   }
@@ -14,7 +14,7 @@ class TitleBar extends Component {
 
 TitleBar.propTypes = {
   title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired
+  subtitle: PropTypes.string
 };
 
 TitleBar.defaultProps = {};
