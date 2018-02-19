@@ -13,8 +13,10 @@ class Player extends Component {
 
   render() {
     return (
-      <p key={this.props.player._id}>
-        {this.props.player.name} has {this.props.player.score} points.
+      <div key={this.props.player._id} className="item">
+        <p>
+          {this.props.player.name} has {this.props.player.score} points.
+        </p>
         <button onClick={() => this.updateScore(this.props.player._id, 1)}>
           +1
         </button>
@@ -24,7 +26,7 @@ class Player extends Component {
         <button onClick={() => this.removePlayer(this.props.player._id)}>
           X
         </button>
-      </p>
+      </div>
     );
   }
 }

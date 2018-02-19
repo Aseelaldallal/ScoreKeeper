@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 class PlayerList extends Component {
   renderPlayers = () => {
     if (this.props.players.length === 0) {
-      return <p> Add your first player to get started! </p>;
+      return (
+        <div className="item">
+          <p> Add your first player to get started! </p>
+        </div>
+      );
     } else {
       return this.props.players.map(player => {
         return <Player key={player._id} player={player} />;
