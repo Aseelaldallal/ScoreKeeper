@@ -14,27 +14,32 @@ class Player extends Component {
   render() {
     return (
       <div key={this.props.player._id} className="item">
-        <p>
-          {this.props.player.name} has {this.props.player.score} points.
-        </p>
-        <button
-          className="button button--round"
-          onClick={() => this.updateScore(this.props.player._id, 1)}
-        >
-          +1
-        </button>
-        <button
-          className="button button--round"
-          onClick={() => this.updateScore(this.props.player._id, -1)}
-        >
-          -1
-        </button>
-        <button
-          className="button button--round"
-          onClick={() => this.removePlayer(this.props.player._id)}
-        >
-          X
-        </button>
+        <div className="player">
+          <div>
+            <h3 className="player__name"> {this.props.player.name}</h3>
+            <p className="player__stats">{this.props.player.score} point(s).</p>
+          </div>
+          <div className="player__actions">
+            <button
+              className="button button--round"
+              onClick={() => this.updateScore(this.props.player._id, 1)}
+            >
+              +1
+            </button>
+            <button
+              className="button button--round"
+              onClick={() => this.updateScore(this.props.player._id, -1)}
+            >
+              -1
+            </button>
+            <button
+              className="button button--round"
+              onClick={() => this.removePlayer(this.props.player._id)}
+            >
+              X
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
