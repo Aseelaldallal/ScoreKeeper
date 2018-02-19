@@ -17,13 +17,22 @@ class Player extends Component {
         <p>
           {this.props.player.name} has {this.props.player.score} points.
         </p>
-        <button onClick={() => this.updateScore(this.props.player._id, 1)}>
+        <button
+          className="button button--round"
+          onClick={() => this.updateScore(this.props.player._id, 1)}
+        >
           +1
         </button>
-        <button onClick={() => this.updateScore(this.props.player._id, -1)}>
+        <button
+          className="button button--round"
+          onClick={() => this.updateScore(this.props.player._id, -1)}
+        >
           -1
         </button>
-        <button onClick={() => this.removePlayer(this.props.player._id)}>
+        <button
+          className="button button--round"
+          onClick={() => this.removePlayer(this.props.player._id)}
+        >
           X
         </button>
       </div>
